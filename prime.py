@@ -1,20 +1,26 @@
+import time
 
-while True:
-    n = input('請輸入正整數: ')
-    if n == 'q':
-        break
-    n = int(n)
-    x = 2
+def is_prime(n):
     if n == 1:
-        print(n, '不是質數\n')
-    while n != 1:
-        if n % x != 0:
-           x += 1
-        elif n % x == 0:
-            if n == x:
-                print(n, '是質數\n')
-                break
+        return False
+    else:
+        x = 2
+        while x ** 2 <= n:
+            if n % x != 0:
+                x += 1
             else:
-                print(n, '不是質數\n')
-                break
+                return False
+        else:
+            return True
 
+def main():
+    n_range = input('請輸入數字: ')
+    n_range = int(n_range)
+    start_time = time.time()
+    prime_number = 0
+    for i in range(1, n_range):
+        if is_prime(i):
+            prime_number += 1
+    print(f'1~{n_range}共有{prime_number}個質數，計算總共花費{time.time() - start_time}秒')
+
+main()
